@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Search Results Widget</title>
+  <script src="static/javascripts/libs/jquery-1.9.1.js"></script>
+  <script src="static/javascripts/libs/handlebars-1.0.0-rc.3.js"></script>
+  <script src="static/javascripts/libs/ember-1.0.0-rc.1.js"></script>
+  <script src="static/javascripts/app.js"></script>
+  <link rel="stylesheet" href="static/stylesheets/screen.css">
+</head>
+<body>
+  {% raw %}
+  <script type="text/x-handlebars" data-template-name="widget-tmpl">
+    <div class="filters">
+      <h3 class="title">Narrow Results:</h3>
+      <h4 class="sub-title">Filters</h4>
+      <ul class="list">
+      {{#each filter in availableFilters}}
+          <li {{bindAttr class="filter.on:on"}}>
+            <span class="disc">&bull;</span>
+            <span class="filter">{{#if filter.on}}{{filter.name}} [<a {{action turnOffFilter filter target="view"}} href="#">remove</a>]
+              {{else}}<a {{action turnOnFilter filter target="view"}} href="#">{{filter.name}}</a>{{/if}}</span></li>
+      {{/each}}
+      </ul>
+    </div>
+
+    <ol class="search-results">
+    {{#each item in filteredContent}}
+        <li class="result">
+          <a href="#" class="title">{{item.title}}</a>
+          <p class="snippet">{{item.snippet}}</p>
+          <small class="tags">{{#each tag in item.tags}}<span class="tag"><a href="#" {{action turnOnFilterFromTag tag target="view"}}>{{tag}}</a><span class="comma">,</span></span> {{/each}}</small>
+        </li>
+    {{/each}}
+     </ol>
+     <div id="empty"></div>
+  </script>
+  {% endraw %}
+</body>
+</html>

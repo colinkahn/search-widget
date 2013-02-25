@@ -1,0 +1,111 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+@import "compass/css3";
+
+body {
+	background:#e4e4e4;
+	width:510px;
+	margin:20px auto;
+}
+
+.search-widget {
+	$link-color:#1b90b3;
+	$border-radius: 4px;
+
+	font-family:Helvetica, Arial, sans-serif;
+	font-size:12px;
+	position:relative;
+	width:510px;
+	background:#fff;
+	overflow:hidden;
+	padding:10px;
+	min-height:200px;
+	@include border-radius($border-radius);
+
+	a {
+		color:$link-color;
+		text-decoration: none;
+		&:hover {
+			color:adjust-lightness($link-color,-15%);
+		}
+	}
+
+	.filters {
+		padding:5px;
+		@include border-radius($border-radius);
+		border:1px solid #e4e4e4;
+
+		width:185px;
+		position:absolute;
+		top:10px;
+		left:10px;
+
+		.title, .sub-title {
+			text-indent: 10px;
+		}
+
+		.title {
+			background:image-url('gradient.gif');
+			line-height:39px;
+			font-size:1.25em;
+			font-weight:bold;
+			color:#fff;
+			@include border-radius($border-radius);
+		}
+		.sub-title {
+			margin-top:2px;
+			background:#f6f0e6;
+			line-height:30px;
+			font-weight: bold;
+			@include border-top-left-radius($border-radius);
+			@include border-top-right-radius($border-radius);
+		}
+		.list {
+			background:#faf6f3;
+			padding:13px 8px;
+			li {
+				margin-bottom:.5em;
+				&.on .filter {
+					font-size:.9em;
+				}
+			}
+			.disc {
+				color:#999;
+			}
+		}
+	}
+
+	.search-results {
+		width:275px;
+		float:right;
+		list-style: decimal;
+		font-weight: bold;
+		font-size:1.15em;
+		padding-left:4ex;
+
+		.result {
+			margin-bottom:1em;
+			padding-bottom:30px;
+			border-bottom:1px dotted #e4e4e4;
+
+			.title {}
+
+			.snippet, .tags {
+				font-weight:normal;
+				font-size:.85em;
+				line-height:1.35em;
+			}
+
+			.snippet {
+				margin-top:.5em;
+			}
+
+			.tags {}
+		}
+	}
+
+}
